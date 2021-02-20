@@ -1,0 +1,93 @@
+
+// ================================================
+
+//    quotesList.push(text);
+//const quotesList = [];
+//    writeData(quotesList);
+/*     fs.appendFile('test.txt', jsonData.join('\n'), 'utf-8', (err) => {
+        if (err) return console.log(err);
+        console.log('Done!');
+    }); */
+/* const quotesList = []; */
+/* const { exit } = require('process'); */
+/* const sleep = (ms) => {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}; */
+
+    // ToDo: Convert '`' and '"' to '.
+/*     switch (text.slice(-1)) {
+        case '.':
+        case '\'':
+        case '?':
+        case '!':
+            break;
+        default:
+            break;
+    } */
+/*     if (text.slice(-1) !== '.') {
+        if ()
+        console.log(text);
+        //console.log('missing dot: ' + id);
+    } */
+/*     console.log('categoryName: ' + categoryName);
+    console.log('category: category.id: ' + category.id + ' | category.name: ' + category.name); */
+            //await sleep(100);
+                            //await sleep(1000);
+    //console.log(await getCategoryId('age'));
+            //categoriesJSONList[i].id = quoteCategoryId;
+/*         categoriesJSONList = categoriesJSONList.reduce((a, b) => (a[b.id] = a[b.name]), {}); */
+/*         categoriesJSONList = { ...categoriesJSONList }; */
+        // console.log(categoriesJSONList);
+/*         console.log(categoriesJSONList); */
+/*         .map(c => c.name) */
+        //writeData(categoriesJSONList);
+/*         console.log(Object.values(categoriesJSONList)); */
+/*         categoriesJSONList = Object.values(categoriesJSONList)
+            .sort((a, b) => {
+                return a.name - b.name;
+            }).map(c => {
+                return {
+                    id: c.id,
+                    name: c.name
+                };
+            }); */
+/*     if (isCategoryMode) {
+        categoriesJSONList = Object.values(categoriesJSONList)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = categoriesJSONList[key];
+                return acc;
+            }, {});
+    }
+ */
+/* const d = require('./src/data') */
+/*                     const id = (currentId - 4); */
+/* const quotes = require('./quotes');
+console.log(quotes['5']); */
+
+/*             console.log(objectsList[i]);
+    console.log(object); */
+        //console.log(array);
+/*         const first = array[0].join();
+        const headers = first.split(',');
+        const jsonData = [];
+        for (let i = 1, length = array.length; i < length; i++) {
+            const myRow = array[i].join();
+            const row = myRow.split(',');
+            const data = {};
+            for (let x = 0; x < row.length; x++) {
+                data[headers[x]] = row[x];
+            }
+            jsonData.push(data);
+        } */
+        //require('./src/server');
+/*     const quoteIndex = quotesList.findIndex(t => t === text.toLowerCase());
+if (quoteIndex > -1) {
+return null;
+}
+else {
+quotesList.push(text.toLowerCase());
+}
+return text; */
