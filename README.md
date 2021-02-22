@@ -1,9 +1,7 @@
-# Server
+# Excel To JSON
 
-Start to be built in May 2020.
-The server application's role is to convert excel content documents to JSON files.
+Built in May 2020. A small application to convert excel content documents to JSON files.
 
----
 ## Requirements
 
 For development, you will only need Node.js and a node global package, Yarn, installed in your environnement.
@@ -41,8 +39,6 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
   After installing node, this project will need yarn too, so just run the following command.
 
       $ npm install -g yarn
-
----
 
 ## Running the project
 
