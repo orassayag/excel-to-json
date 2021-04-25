@@ -1,7 +1,11 @@
 {
     "name": "excel-to-json",
     "version": "0.1.0",
-    "private": true,
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/orassayag/excel-to-json.git"
+    },
     "scripts": {
         "start": "node server.js",
         "stop": "taskkill -f -im node.exe",

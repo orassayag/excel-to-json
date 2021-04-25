@@ -15,6 +15,13 @@ build/
 /build
 build
 
+# Misc.
+**/misc/backups/
+/misc/backups
+misc/backups/
+/misc/backups/
+misc/backups
+
 # Logs.
 /logs
 
