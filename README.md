@@ -1,61 +1,241 @@
 # Excel To JSON
 
-Built in May 2020. A small application to convert excel content documents to JSON files.
+A Node.js application to convert Excel spreadsheets and text files containing quotes data into structured JSON files with normalized person names and categories.
 
-## Requirements
+Built in May 2020. This JavaScript application processes quotes from multiple file formats, extracts and normalizes metadata, and generates organized JSON output suitable for use in web applications, APIs, or databases.
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environnement.
+## Features
 
-### Node
-- #### Node installation on Windows
+- 📊 Converts Excel files (.xlsx) to JSON format
+- 📝 Processes text files with semicolon-separated values
+- 👤 Extracts and normalizes person names (handles various formats)
+- 🏷️ Organizes quotes by categories
+- 🔗 Creates relational structure with unique IDs
+- 🧹 Cleans and normalizes text data automatically
+- 🚫 Prevents duplicate entries for persons and categories
+- 📦 Generates separate JSON files for quotes, persons, and categories
 
-  Just go on [official Node.js website](https://nodejs.org) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com)).
+## Getting Started
 
-- #### Node installation on Ubuntu
+### Prerequisites
 
-  You can install nodejs and npm easily with apt install, just run the following commands.
+- Node.js (v8 or higher)
+- npm or yarn
 
-      $ sudo apt install nodejs
-      $ sudo apt install npm
+### Installation
 
-- #### Other Operating Systems
-  You can find more information about the installation on the [official Node.js website](https://nodejs.org) and the [official NPM website](https://npmjs.org).
+1. Clone the repository:
+```bash
+git clone https://github.com/orassayag/excel-to-json.git
+cd excel-to-json
+```
 
-If the installation was successful, you should be able to run the following command.
+2. Install dependencies:
+```bash
+npm install
+```
 
-    $ node --version
-    v8.11.3
+### Configuration
 
-    $ npm --version
-    6.1.0
+Place your data files in the `src/data/` directory:
+- `quotes.xlsx` - Excel file with quotes (columns: Quote, Person, Category)
+- `quotes.txt` - Text file with semicolon-separated data
 
-If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
+Edit settings in `src/settings/settings.js` if needed:
+```javascript
+{
+  NODE_ENV: 'development',
+  SERVER_PORT: '3001'
+}
+```
 
-    $ npm install npm -g
+## Usage
 
-###
-### Yarn installation
-  After installing node, this project will need yarn too, so just run the following command.
+### Basic Conversion
 
-      $ npm install -g yarn
+Run the conversion script:
+```bash
+npm start
+```
 
-## Running the project
+This generates JSON files in the `src/dist/` directory:
+- `quotes.json` - Quotes with linked person and category IDs
+- `quotesCategories.json` - Category definitions
+- `quotesPersons.json` - Person definitions
 
-    $ yarn start
+### Processing Modes
 
-## Simple build for production
+Edit `back-server.js` to change processing modes:
 
-    $ yarn build
+**Extract Categories:**
+```javascript
+const isCategoryMode = true;
+const isPersonMode = false;
+```
+
+**Extract Persons:**
+```javascript
+const isCategoryMode = false;
+const isPersonMode = true;
+```
+
+**Generate Full Quotes:**
+```javascript
+const isCategoryMode = false;
+const isPersonMode = false;
+```
+
+## Project Structure
+
+```
+excel-to-json/
+├── src/
+│   ├── data/               # Input data files (Excel, TXT)
+│   ├── dist/               # Generated JSON output files
+│   ├── services/           # Utility services
+│   │   └── error.service.js
+│   ├── settings/           # Configuration
+│   │   └── settings.js
+│   └── server.js           # HTTP server setup
+├── back-server.js          # Main conversion script
+├── server.js               # Alternative server entry point
+├── package.json
+└── README.md
+```
+
+## Data Flow
+
+```mermaid
+graph LR
+    A[Excel File] --> C[Conversion Script]
+    B[Text File] --> C
+    C --> D{Processing Mode}
+    D -->|Category Mode| E[quotesCategories.json]
+    D -->|Person Mode| F[quotesPersons.json]
+    D -->|Full Mode| G[quotes.json]
+    G --> H[Linked Data with IDs]
+    E --> H
+    F --> H
+```
+
+## Input Format
+
+### Excel File (quotes.xlsx)
+
+| Quote | Person | Category |
+|-------|--------|----------|
+| "Example quote..." | Author Name | Category Name |
+| "Another quote..." | LastName, FirstName | Another Category |
+
+### Text File (quotes.txt)
+
+```
+1;Example quote...;Author Name;Category Name
+2;Another quote...;LastName, FirstName;Another Category
+```
+
+## Output Format
+
+### Quotes JSON
+```json
+{
+  "1": {
+    "quote": "Example quote...",
+    "name": "Author Name",
+    "categoryId": 1
+  }
+}
+```
+
+### Categories JSON
+```json
+{
+  "1": {
+    "id": 1,
+    "name": "Category Name",
+    "iconName": " "
+  }
+}
+```
+
+### Persons JSON
+```json
+{
+  "1": {
+    "id": 1,
+    "name": "Author Name",
+    "profession": " ",
+    "wikipediaURL": " "
+  }
+}
+```
+
+## Available Scripts
+
+### Start
+Run the conversion:
+```bash
+npm start
+```
+
+### Debug
+Run with Node.js debugger:
+```bash
+npm run debug
+```
+
+### Stop
+Stop all Node.js processes (Windows):
+```bash
+npm run stop
+```
+
+## Features in Detail
+
+### Name Normalization
+- Converts "LastName, FirstName" to "FirstName LastName"
+- Removes extra whitespace
+- Handles various name formats
+
+### Text Cleaning
+- Removes line breaks and normalizes spacing
+- Trims leading/trailing whitespace
+- Consolidates multiple spaces
+
+### Duplicate Prevention
+- Identifies existing persons and categories
+- Reuses IDs for duplicates
+- Maintains referential integrity
+
+### Error Handling
+- Validates data before processing
+- Skips invalid entries gracefully
+- Logs errors with detailed information
+
+## Development
+
+The project uses:
+- **Node.js** with ES6+ features
+- **xlsx** library for Excel file processing
+- **readline** for text file streaming
+- **ESLint** for code quality
+
+## Contributing
+
+Contributions to this project are [released](https://help.github.com/articles/github-terms-of-service/#6-contributions-under-repository-license) to the public under the [project's open source license](LICENSE).
+
+Everyone is welcome to contribute. Contributing doesn't just mean submitting pull requests—there are many different ways to get involved, including answering questions and reporting issues.
+
+Please feel free to contact me with any question, comment, pull-request, issue, or any other thing you have in mind.
 
 ## Author
 
 * **Or Assayag** - *Initial work* - [orassayag](https://github.com/orassayag)
 * Or Assayag <orassayag@gmail.com>
 * GitHub: https://github.com/orassayag
-* StackOverFlow: https://stackoverflow.com/users/4442606/or-assayag?tab=profile
+* StackOverflow: https://stackoverflow.com/users/4442606/or-assayag?tab=profile
 * LinkedIn: https://linkedin.com/in/orassayag
 
 ## License
 
-This application has an UNLICENSED license.
+This application has an MIT license - see the [LICENSE](LICENSE) file for details.

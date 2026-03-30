@@ -1,11 +1,25 @@
 {
     "name": "excel-to-json",
     "version": "0.1.0",
+    "description": "A Node.js application to convert Excel spreadsheets and text files containing quotes data into structured JSON files with normalized person names and categories",
     "private": false,
+    "license": "MIT",
+    "author": "Or Assayag <orassayag@gmail.com>",
     "repository": {
         "type": "git",
         "url": "git://github.com/orassayag/excel-to-json.git"
     },
+    "keywords": [
+        "excel",
+        "json",
+        "converter",
+        "xlsx",
+        "quotes",
+        "data-processing",
+        "data-normalization",
+        "spreadsheet",
+        "nodejs"
+    ],
     "scripts": {
         "start": "node server.js",
         "stop": "taskkill -f -im node.exe",
@@ -17,5 +31,8 @@
         "eslint": "^7.3.1",
         "readline": "^1.3.0",
         "xlsx": "^0.16.6"
+    },
+    "engines": {
+        "node": ">=8.0.0"
     }
 }
