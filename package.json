@@ -1,38 +1,83 @@
 {
-    "name": "excel-to-json",
-    "version": "0.1.0",
-    "description": "A Node.js application to convert Excel spreadsheets and text files containing quotes data into structured JSON files with normalized person names and categories",
-    "private": false,
-    "license": "MIT",
-    "author": "Or Assayag <orassayag@gmail.com>",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/orassayag/excel-to-json.git"
-    },
-    "keywords": [
-        "excel",
-        "json",
-        "converter",
-        "xlsx",
-        "quotes",
-        "data-processing",
-        "data-normalization",
-        "spreadsheet",
-        "nodejs"
-    ],
-    "scripts": {
-        "start": "node server.js",
-        "stop": "taskkill -f -im node.exe",
-        "debug": "node --inspect-brk server.js"
-    },
-    "dependencies": {
-        "babel-eslint": "^10.1.0",
-        "death": "^1.1.0",
-        "eslint": "^7.3.1",
-        "readline": "^1.3.0",
-        "xlsx": "^0.16.6"
-    },
-    "engines": {
-        "node": ">=8.0.0"
+  "name": "excel-to-json",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A Node.js application for converting Excel and TXT quote files into JSON data. It processes .xlsx and semicolon-separated files, extracting quotes, authors, and categories. The project normalizes names, removes duplicates, and generates reusable JSON files for quotes, persons, and categories",
+  "keywords": [
+    "excel",
+    "json",
+    "converter",
+    "xlsx",
+    "quotes",
+    "data-processing",
+    "data-normalization",
+    "spreadsheet",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/orassayag/excel-to-json#readme",
+  "bugs": {
+    "url": "https://github.com/orassayag/excel-to-json/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/orassayag/excel-to-json.git"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/orassayag"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Or Assayag",
+    "email": "orassayag@gmail.com",
+    "url": "https://github.com/orassayag"
+  },
+  "contributors": [
+    {
+      "name": "Or Assayag",
+      "email": "orassayag@gmail.com",
+      "url": "https://github.com/orassayag"
     }
+  ],
+  "type": "commonjs",
+  "main": "src/server.js",
+  "files": [
+    ".github",
+    ".vscode",
+    "misc",
+    "src",
+    ".eslintignore",
+    ".eslintrc",
+    ".gitignore",
+    ".jsbeautifyrc",
+    ".npmignore",
+    ".prettierrc",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "INSTRUCTIONS.md",
+    "knip.json",
+    "LICENSE",
+    "package-lock.json",
+    "package.json",
+    "README.md",
+    "SECURITY.md",
+    "server.js"
+  ],
+  "scripts": {
+    "debug": "node --inspect-brk server.js",
+    "start": "node server.js",
+    "stop": "taskkill -f -im node.exe"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "death": "^1.1.0",
+    "eslint": "^7.3.1",
+    "readline": "^1.3.0",
+    "xlsx": "^0.16.6"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }

@@ -9,13 +9,14 @@ Everyone is welcome to contribute to this project. Contributing doesn't just mea
 ### Reporting Issues
 
 If you find a bug or have a feature request:
+
 1. Check if the issue already exists in the [GitHub Issues](https://github.com/orassayag/excel-to-json/issues)
 2. If not, create a new issue with:
    - Clear title and description
    - Steps to reproduce (for bugs)
    - Expected vs actual behavior
+   - Error codes (if applicable)
    - Your environment details (OS, Node version)
-   - Sample data files (if applicable)
 
 ### Submitting Pull Requests
 
@@ -25,57 +26,62 @@ If you find a bug or have a feature request:
    git checkout -b feature/your-feature-name
    ```
 3. Make your changes following the code style guidelines below
-4. Test your changes with sample data
+4. Test your changes thoroughly
 5. Commit with clear, descriptive messages
 6. Push to your fork and submit a pull request
 
 ### Code Style Guidelines
 
 This project uses:
-- **JavaScript (ES6+)** with Node.js
+
+- **TypeScript** with strict type checking
 - **ESLint** for code quality
+- **Prettier** for code formatting
+- **InversifyJS** for dependency injection
 
 Before submitting:
-```bash
-# Install dependencies
-npm install
 
-# Test the conversion
-npm start
+```bash
+pnpm format
+pnpm lint
+pnpm build
+pnpm test
 ```
 
 ### Coding Standards
 
-1. **Naming**: Use clear, descriptive names for variables and functions
-2. **Error handling**: Include proper error handling for file operations
-3. **Comments**: Add comments to explain complex logic
-4. **Modularity**: Keep functions focused on single responsibilities
-5. **File paths**: Use relative paths that work across different environments
+1. **Dependency Injection**: Use @injectable decorators for services
+2. **Error handling**: All errors must include unique error codes (see `misc/error_index.txt`)
+3. **Logging**: Use structured Logger instead of console.log
+4. **Type safety**: Avoid using `any` - define proper types
+5. **Domain organization**: Place code in appropriate domain folders (not utils/)
+6. **Naming**: Use clear, descriptive names for variables and functions
 
 ### Adding New Features
 
 When adding new features:
-1. Update the main conversion logic in `back-server.js`
-2. Add new service functions if needed in `src/services/`
-3. Update configuration in `src/settings/settings.js` if required
-4. Test with various data formats
-5. Update documentation (README.md and INSTRUCTIONS.md)
 
-### Testing Your Changes
+1. Create appropriate types in `src/types/`
+2. Add service logic in `src/services/` with DI
+3. Update scripts in `src/scripts/` if needed
+4. Add error codes and update `misc/error_index.txt`
+5. Test thoroughly with vitest
 
-Test the application with:
-- Various Excel file formats (.xlsx)
-- Text files with different quote structures
-- Edge cases (empty fields, special characters, duplicate entries)
-- Large datasets to ensure performance
+### Error Code Management
+
+When adding new errors:
+
+1. Use the next available error code from `misc/error_index.txt`
+2. Format: `[ERROR-XXXXXXX]` at the start of the error message
+3. Document the error in `misc/error_index.txt`
 
 ## Questions or Need Help?
 
 Please feel free to contact me with any question, comment, pull-request, issue, or any other thing you have in mind.
 
-* Or Assayag <orassayag@gmail.com>
-* GitHub: https://github.com/orassayag
-* StackOverflow: https://stackoverflow.com/users/4442606/or-assayag?tab=profile
-* LinkedIn: https://linkedin.com/in/orassayag
+- Or Assayag <orassayag@gmail.com>
+- GitHub: https://github.com/orassayag
+- StackOverflow: https://stackoverflow.com/users/4442606/or-assayag?tab=profile
+- LinkedIn: https://linkedin.com/in/orassayag
 
 Thank you for contributing! 🙏
